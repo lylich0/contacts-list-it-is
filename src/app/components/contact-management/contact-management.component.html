@@ -1,0 +1,59 @@
+<form #form='ngForm'>
+  <h4 class="text-center">Details</h4>
+  <div class="form-content">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input
+        id="firstName"
+        [ngModel]="contact?.firstName"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="true"
+      >
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input
+        id="lastName"
+        [ngModel]="contact?.lastName"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="true"
+      >
+    </div>
+    <div>
+      <label for="phoneNumber">Phone Number:</label>
+      <input
+        id="phoneNumber"
+        [ngModel]="contact?.phoneNumber"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="true"
+      >
+    </div>
+    <div>
+      <label for="birthDate">Birth Date:</label>
+      <input
+        id="birthDate"
+        [ngModel]="contact?.birthDate | date"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="true"
+      >
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        [ngModel]="contact?.email"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="true"
+      >
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input
+        id="address"
+        [ngModel]="contact?.address"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="true"
+      >
+    </div>
+  </div>
+</form>

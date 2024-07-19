@@ -1,0 +1,19 @@
+<div class="input-group mt-2 mb-2">
+  <input type="text" class="form-control" id="searchInput" placeholder="Enter contact" [(ngModel)]="searchTerm">
+  <button class="btn btn-primary" type="button" (click)="search()">Search</button>
+</div>
+<div *ngIf="isSearchActive; else allContacts">
+  <div *ngIf="searchResults.length > 0">
+    <div *ngFor="let contact of searchResults">
+      <app-contact-card [contact]="contact"></app-contact-card>
+    </div>
+  </div>
+  <div *ngIf="searchResults.length === 0">
+    <p>No contacts found.</p>
+  </div>
+</div>
+<ng-template #allContacts>
+  <div *ngFor="let contact of contacts">
+    <app-contact-card [contact]="contact"></app-contact-card>
+  </div>
+</ng-template>
