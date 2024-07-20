@@ -1,59 +1,68 @@
-<form #form='ngForm'>
-  <h4 class="text-center">Details</h4>
+<form #form='ngForm' (ngSubmit)="handleFormSubmit()">
+  <h4 class="text-center">{{ header[state] }}</h4>
   <div class="form-content">
     <div>
       <label for="firstName">First Name:</label>
       <input
         id="firstName"
-        [ngModel]="contact?.firstName"
+        [ngModel]="state === 'add' ? newContact.firstName : contact.firstName"
+        (ngModelChange)="state === 'add' ? newContact.firstName = $event : contact.firstName = $event"
         [ngModelOptions]="{standalone: true}"
-        [disabled]="true"
+        [disabled]="state === 'view'"
       >
     </div>
     <div>
       <label for="lastName">Last Name:</label>
       <input
         id="lastName"
-        [ngModel]="contact?.lastName"
+        [ngModel]="state === 'add' ? newContact.lastName : contact.lastName"
+        (ngModelChange)="state === 'add' ? newContact.lastName = $event : contact.lastName = $event"
         [ngModelOptions]="{standalone: true}"
-        [disabled]="true"
+        [disabled]="state === 'view'"
       >
     </div>
     <div>
       <label for="phoneNumber">Phone Number:</label>
       <input
         id="phoneNumber"
-        [ngModel]="contact?.phoneNumber"
+        [ngModel]="state === 'add' ? newContact.phoneNumber : contact.phoneNumber"
+        (ngModelChange)="state === 'add' ? newContact.phoneNumber = $event : contact.phoneNumber = $event"
         [ngModelOptions]="{standalone: true}"
-        [disabled]="true"
+        [disabled]="state === 'view'"
       >
     </div>
     <div>
       <label for="birthDate">Birth Date:</label>
       <input
         id="birthDate"
-        [ngModel]="contact?.birthDate | date"
+        [ngModel]="state === 'add' ? newContact.birthDate : contact.birthDate | date"
+        (ngModelChange)="state === 'add' ? newContact.birthDate = $event : contact.birthDate = $event"
         [ngModelOptions]="{standalone: true}"
-        [disabled]="true"
+        [disabled]="state === 'view'"
       >
     </div>
     <div>
       <label for="email">Email:</label>
       <input
         id="email"
-        [ngModel]="contact?.email"
+        [ngModel]="state === 'add' ? newContact.email : contact.email"
+        (ngModelChange)="state === 'add' ? newContact.email = $event : contact.email = $event"
         [ngModelOptions]="{standalone: true}"
-        [disabled]="true"
+        [disabled]="state === 'view'"
       >
     </div>
     <div>
       <label for="address">Address:</label>
       <input
         id="address"
-        [ngModel]="contact?.address"
+        [ngModel]="state === 'add' ? newContact.address : contact.address"
+        (ngModelChange)="state === 'add' ? newContact.address = $event : contact.address = $event"
         [ngModelOptions]="{standalone: true}"
-        [disabled]="true"
+        [disabled]="state === 'view'"
       >
+    </div>
+    <div *ngIf="state !== 'view'" class="text-center">
+      <button class='btn btn-primary' type="submit">{{ state === 'add' ? 'Submit' : 'Update' }}</button>
     </div>
   </div>
 </form>

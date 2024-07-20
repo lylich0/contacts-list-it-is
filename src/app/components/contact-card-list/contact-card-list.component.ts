@@ -3,6 +3,8 @@ import {Contact} from "../../interfaces/IContact";
 import {ContactCardComponent} from "../contact-card/contact-card.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {ContactService} from "../../services/contact/contact.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-contact-card-list',
@@ -37,13 +39,21 @@ export class ContactCardListComponent implements OnInit {
       address: 'South Carolina, United States'
     }
   ]
-
   isSearchActive: boolean = false;
   searchTerm: string = '';
   searchResults: Contact[] = [];
 
+  constructor(private router: Router, private contactService: ContactService) { }
+
   ngOnInit(): void {
-    localStorage.setItem('contacts', JSON.stringify(this.contacts));
+    this.fetchContacts();
+  }
+
+  fetchContacts() {
+    const storedContacts = localStorage.getItem('contacts');
+    if (storedContacts) {
+      this.contacts = JSON.parse(storedContacts);
+    }
   }
 
   search() {
@@ -62,5 +72,10 @@ export class ContactCardListComponent implements OnInit {
     })
 
     this.isSearchActive = true;
+  }
+
+  add() {
+    this.contactService.setState('add');
+    this.router.navigate(['/contacts/new']);
   }
 }

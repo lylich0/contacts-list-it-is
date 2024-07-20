@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {Contact} from "../../interfaces/IContact";
 import {Router} from "@angular/router";
+import {ContactService} from "../../services/contact/contact.service";
 
 @Component({
   selector: 'app-contact-card',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
   templateUrl: './contact-card.component.html',
   styleUrl: './contact-card.component.scss'
 })
-export class ContactCardComponent {
+export class ContactCardComponent  {
   @Input() contact: Contact = {
     id: '',
     firstName: '',
@@ -23,11 +24,25 @@ export class ContactCardComponent {
     address: ''
   };
 
-  @Input() cardColor: string = '';
-
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private contactService: ContactService,
+  ) {}
 
   view(id: string) {
+    this.contactService.setState('view');
     this.router.navigate(['/contacts', id, 'view']);
+  }
+
+  edit(id: string) {
+    this.contactService.setState('edit');
+    this.router.navigate(['/contacts', id, 'edit']);
+  }
+
+  delete(id: string) {
+    this.contactService.delete(id).subscribe(() => {
+      this.contactService.getAllContacts();
+      window.location.reload();
+    })
   }
 }

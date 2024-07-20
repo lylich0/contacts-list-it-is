@@ -5,7 +5,7 @@
   </div>
   <div class="buttons d-flex flex-column">
     <button class='btn btn-primary' (click)="view(contact.id!)">View Details</button>
-    <button class='btn btn-secondary'>Edit</button>
-    <button class='btn btn-danger'>Delete</button>
+    <button class='btn btn-secondary' (click)="edit(contact.id!)">Edit</button>
+    <button class='btn btn-danger' (click)="delete(contact.id!)">Delete</button>
   </div>
 </div>

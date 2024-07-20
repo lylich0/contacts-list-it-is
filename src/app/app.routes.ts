@@ -5,5 +5,7 @@ import {ContactCardListComponent} from "./components/contact-card-list/contact-c
 export const routes: Routes = [
   { path: 'contacts', component: ContactCardListComponent },
   { path: 'contacts/:id/view', component: ContactManagementComponent },
+  { path: 'contacts/:id/edit', component: ContactManagementComponent },
+  { path: 'contacts/new', component: ContactManagementComponent },
   { path: '', redirectTo: 'contacts', pathMatch: 'full' },
 ];
