@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Contact} from "../../interfaces/IContact";
 import {ContactService} from "../../services/contact/contact.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -9,6 +9,7 @@ import {DatePipe, NgIf} from "@angular/common";
   selector: 'app-contact-management',
   standalone: true,
   imports: [
+    ReactiveFormsModule,
     FormsModule,
     DatePipe,
     NgIf
@@ -33,7 +34,7 @@ export class ContactManagementComponent implements OnInit {
     firstName: '',
     lastName: '',
     phoneNumber: '',
-    birthDate: new Date(),
+    birthDate: null,
     email: '',
     address: ''
   }
@@ -57,13 +58,11 @@ export class ContactManagementComponent implements OnInit {
       this.id = this.route.snapshot.paramMap.get('id');
       this.contactService.getById(this.id).subscribe(contact => {
         this.contact = contact;
-        console.log("This contact's ID: ", this.contact.id);
-        console.log("This contact's name: ", this.contact.firstName);
       });
     }
   }
 
-  handleFormSubmit() {
+  onSubmit() {
     if (this.state === 'add') {
       this.addContact();
     }

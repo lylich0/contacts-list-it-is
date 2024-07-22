@@ -1,7 +1,7 @@
 <div class="card d-flex flex-row mt-3 mb-3">
   <div class="card-body">
     <h5 class="card-title">{{ contact.firstName }} {{ contact.lastName }}</h5>
-    <p class="card-text">{{ contact.phoneNumber }}</p>
+    <p class="card-text">{{ formatPhone(contact.phoneNumber) }}</p>
   </div>
   <div class="buttons d-flex flex-column">
     <button class='btn btn-primary' (click)="view(contact.id!)">View Details</button>

@@ -45,4 +45,9 @@ export class ContactCardComponent  {
       window.location.reload();
     })
   }
+
+  formatPhone(phoneNumber: string): string {
+    const parts = phoneNumber.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+    return parts ? `${parts[1]}-${parts[2]}-${parts[3]}` : phoneNumber;
+  }
 }

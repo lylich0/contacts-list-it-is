@@ -3,7 +3,7 @@ export interface Contact {
    firstName: string;
    lastName: string;
    phoneNumber: string;
-   birthDate: Date;
+   birthDate: Date | null;
    email: string;
    address: string;
 }

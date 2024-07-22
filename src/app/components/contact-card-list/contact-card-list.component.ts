@@ -47,6 +47,7 @@ export class ContactCardListComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchContacts();
+    localStorage.setItem('contacts', JSON.stringify(this.contacts));
   }
 
   fetchContacts() {
